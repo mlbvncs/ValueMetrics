@@ -7,6 +7,7 @@ import requests
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).resolve().parent.parent / "config" / ".env")
+
 API_URL = "https://api.geckoapi.com.br/v1/extract"
 PAGE_URL = "https://lista.mercadolivre.com.br/celulares-e-telefones"
 KEYWORD = "celulares e telefones"
@@ -43,19 +44,25 @@ def extract_gecko_api(api_url: str, page_url: str, keyword: str, page: int) -> d
 
     return data
 
-first_page = extract_gecko_api(API_URL, PAGE_URL, KEYWORD, 1)
-total_pages = ceil(first_page["data"]["totalResults"] / first_page["data"]["resultsPerPage"])
 
-responses = [first_page] 
-for page in range(2, total_pages + 1):
-    page_response = extract_gecko_api(API_URL, PAGE_URL, KEYWORD, page)
-    responses.append(page_response) 
+def main() -> None:
+    first_page = extract_gecko_api(API_URL, PAGE_URL, KEYWORD, 1)
+    total_pages = ceil(first_page["data"]["totalResults"] / first_page["data"]["resultsPerPage"])
 
-output_path = Path("data") / "gecko_data.json"
-output_dir = output_path.parent
-output_dir.mkdir(parents=True, exist_ok=True)
+    responses = [first_page] 
+    for page in range(2, total_pages + 1):
+        page_response = extract_gecko_api(API_URL, PAGE_URL, KEYWORD, page)
+        responses.append(page_response) 
 
-with open(output_path, 'w', encoding='utf-8') as f:
-    json.dump(responses, f, indent=4, ensure_ascii=False)
+    output_path = Path("data") / "gecko_data.json"
+    output_dir = output_path.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-print(f"Response saved to {output_path}")
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(responses, f, indent=4, ensure_ascii=False)
+
+    print(f"Response saved to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
