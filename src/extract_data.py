@@ -54,7 +54,7 @@ def main() -> None:
         page_response = extract_gecko_api(API_URL, PAGE_URL, KEYWORD, page)
         responses.append(page_response) 
 
-    output_path = Path("data") / "gecko_data.json"
+    output_path = Path("data") / "bronze_data.json"
     output_dir = output_path.parent
     output_dir.mkdir(parents=True, exist_ok=True)
 
