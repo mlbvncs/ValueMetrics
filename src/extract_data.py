@@ -13,7 +13,9 @@ PAGE_URL = "https://lista.mercadolivre.com.br/celulares-e-telefones"
 KEYWORD = "celulares e telefones"
 
 import logging
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def extract_gecko_api(api_url: str, page_url: str, keyword: str, page: int) -> dict:
     api_key = os.getenv("API_KEY")
@@ -63,7 +65,7 @@ def main() -> None:
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(responses, f, indent=4, ensure_ascii=False)
 
-    logging.info(f"Response saved to {output_path}")
+    logger.info(f"Response saved to {output_path}")
 
 
 if __name__ == "__main__":

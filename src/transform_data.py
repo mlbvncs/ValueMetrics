@@ -1,11 +1,20 @@
-from pathlib import Path
-import pandas as pd
 import json
-
 import logging
+from pathlib import Path
+
+import pandas as pd
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 LOCAL_PATH = Path("../data") / "bronze_data.json"
+columns_names_to_drop = [
+    'requestId', 'executionId', 'data.source', 'data.type', 
+    'data.url', 'data.requestUrl', 'data.query', 'data.totalResults', 
+    'data.primaryResults', 'data.page', 'data.resultsPerPage', 'data.offset', 
+    'data.nextPage', 'data.nextPageUrl', 'data.items', 'categoryId', 'domainId', 'currency',
+    'currencyRaw', 'aggregateRating'
+]
 columns_names_to_rename = {
     "requestId": "request_id",
     "executionId": "execution_id",
@@ -26,7 +35,7 @@ columns_names_to_rename = {
 }
 
 def create_dataframe(local_path: str) -> pd.DataFrame:
-    #logging.info("Creating DataFrame from the JSON file...")
+    logger.info("Creating DataFrame from the JSON file...")
     path = local_path
 
     if not path.exists():
@@ -36,7 +45,7 @@ def create_dataframe(local_path: str) -> pd.DataFrame:
         data = json.load(f)
 
     df = pd.json_normalize(data)
-    #logging.info(f"\nDataFrame created with {len(df)} row(s)")
+    logger.info(f"DataFrame created with {len(df)} row(s)")
     return df
 
 
@@ -45,35 +54,16 @@ def normalize_data_items_columns(df: pd.DataFrame) -> pd.DataFrame:
 
     df_data_items = pd.json_normalize(df_exploded['data.items'])
     
-    '''if 'aggregateRating' in df_data_items:
-        df_data_items = df_data_items.drop(columns=['aggregateRating'])'''
+    df = pd.concat(
+        [df_exploded.drop(columns="data.items"), df_data_items],
+        axis=1,
+    )
 
-    df_data_items = df_data_items.rename(columns={
-        'url': 'data_items_url',
-        'imageUrl': 'data_items_imageUrl',
-        'sku': 'data_items_sku',
-        'categoryId': 'data_items_categoryId',
-        'domainId': 'data_items_domainId',
-        'name': 'data_items_name',
-        'condition': 'data_items_condition',
-        'currency': 'data_items_currency',
-        'currencyRaw': 'data_items_currencyRaw',
-        'price': 'data_items_price',
-        'highlight': 'data_items_highlight',
-        'isBestSeller': 'data_items_isBestSeller',
-        'isPowerSeller': 'data_items_isPowerSeller',
-        'powerSellerStatusTitle': 'data_items_powerSellerStatusTitle',
-        'ean': 'data_items_ean',
-        'sellerId': 'data_items_sellerId',
-        'sellerName': 'data_items_sellerName',
-        'sellerCity': 'data_items_sellerCity',
-        'sellerState': 'data_items_sellerState',
-        'sellerCountry': 'data_items_sellerCountry',
-        'aggregateRating.rating': 'data_items_aggregateRating_rating',
-        'aggregateRating.reviewCount': 'data_items_aggregateRating_reviewCount',
-        'aggregateRating': 'aggregateRating'
-    })
-
-    df = pd.concat([df_exploded, df_data_items], axis=1)
-    logging.info(f"\nNormalized 'data.items' column - {len(df.columns)} columns")
+    logger.info(f"\nNormalized 'data.items' column - {len(df.columns)} columns")
     return df
+
+def drop_columns(df: pd.DataFrame, columns_to_drop: list) -> pd.DataFrame:
+    df = df.drop(columns=columns_to_drop, errors='ignore')
+
+    logger.info(f"\nDropped columns - {len(columns_to_drop)} columns dropped")
+    return df 
