@@ -43,8 +43,17 @@ def extract_gecko_api(api_url: str, page_url: str, keyword: str, page: int) -> d
 
     data = response.json()
 
-    if "data" not in data or "items" not in data["data"]:
-        raise ValueError("Response missing data/items")
+    if data.get("notFound"):
+        raise ValueError(f"Entity not found upstream (page={page})")
+
+    if "data" not in data or data["data"] is None:
+        raise ValueError("Response missing data")
+
+    if "items" not in data["data"]:
+        raise ValueError("Response missing items")
+
+    if not data["data"]["items"]:
+        raise ValueError(f"Page {page} returned 0 items (expected non-empty)")
 
     return data
 

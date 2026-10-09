@@ -8,14 +8,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 LOCAL_PATH = Path("../data") / "bronze_data.json"
-columns_names_to_drop = [
-    'requestId', 'executionId', 'data.source', 'data.type', 
-    'data.url', 'data.requestUrl', 'data.query', 'data.totalResults', 
-    'data.primaryResults', 'data.page', 'data.resultsPerPage', 'data.offset', 
-    'data.nextPage', 'data.nextPageUrl', 'data.items', 'categoryId', 'domainId', 'currency',
-    'currencyRaw', 'aggregateRating'
+unnecessary_columns = [
+    'requestId', 'executionId', 'data.source', 'data.type', 'data.url', 
+    'data.requestUrl', 'data.query', 'data.totalResults', 'data.primaryResults', 
+    'data.page', 'data.resultsPerPage', 'data.offset', 'data.nextPage', 'data.nextPageUrl'
 ]
-columns_names_to_rename = {
+columns_to_rename = {
     "requestId": "request_id",
     "executionId": "execution_id",
     "data.source": "source",
