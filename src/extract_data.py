@@ -1,5 +1,7 @@
 import logging
+import math
 import os
+import json
 
 import pandas as pd
 import requests
@@ -44,13 +46,13 @@ def main():
     data = extracting_data(1)
     all_pages = [data]
 
-    total_pages = data["data"]["totalResults"] / data["data"]["resultsPerPage"]
-    for i in range(2, int(total_pages) + 1):
+    total_pages = math.ceil(data["data"]["totalResults"] / data["data"]["resultsPerPage"])
+    for i in range(2, total_pages + 1):
          data = extracting_data(i)
          all_pages.append(data)
 
     with Path(p / 'data' / 'bronze_data.json').open('w', encoding='utf-8') as f:
-            f.write(str(all_pages))
+            json.dump(all_pages, f, indent=2, ensure_ascii=False)
 
     return 0
 
