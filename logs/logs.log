@@ -1,0 +1,5 @@
+2026-10-14 09:08:00,285 - __main__ - CRITICAL - API_KEY is not set in the environment variables.
+2026-10-14 09:10:11,280 - __main__ - CRITICAL - API_KEY is not set in the environment variables.
+2026-10-14 10:29:59,938 - __main__ - ERROR - API_KEY is not set in the environment variables.
+2026-10-14 10:30:49,216 - __main__ - ERROR - Request failed: HTTPSConnectionPool(host='esse-dominio-nao-existe-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='esse-dominio-nao-existe-12345.com', port=443): Failed to resolve 'esse-dominio-nao-existe-12345.com' ([Errno -2] Name or service not known)"))
+2026-10-14 10:35:05,146 - __main__ - ERROR - Request failed: HTTPSConnectionPool(host='esse-dominio-nao-existe-12345.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='esse-dominio-nao-existe-12345.com', port=443): Failed to resolve 'esse-dominio-nao-existe-12345.com' ([Errno -2] Name or service not known)"))
