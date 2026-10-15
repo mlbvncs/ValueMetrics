@@ -12,7 +12,7 @@ p = Path(__file__).parent.resolve().parent
 Path(p / 'logs').mkdir(parents=True, exist_ok=True)
 
 format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-filename_path = Path(p / 'logs' / 'logs.log')
+filename_path = Path(p / 'logs' / 'extract_data.log')
 logging.basicConfig(format=format, filename=filename_path, encoding='utf-8', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -36,8 +36,8 @@ def extracting_data(page: int) -> pd.DataFrame:
             timeout = 30
         )
         return response.json()
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Request failed: {e}")
+    except Exception as e:
+        logger.error(f"Error occurred while extracting data: {e}")
         raise
 
 def main():
