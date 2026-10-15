@@ -1,8 +1,0 @@
-2026-10-15 11:36:34,896 - botocore.credentials - INFO - Found credentials in environment variables.
-2026-10-15 11:43:38,350 - botocore.credentials - INFO - Found credentials in environment variables.
-2026-10-15 11:45:46,130 - botocore.credentials - INFO - Found credentials in environment variables.
-2026-10-15 12:02:11,387 - botocore.credentials - INFO - Found credentials in environment variables.
-2026-10-15 12:02:12,647 - __main__ - ERROR - Error occurred while uploading file: Failed to upload /home/mlbvncs/Projects/ValueMetrics/data/bronze_data.json to bucket-que-nao-existe-12345abcde/bronze/mercadolivre/celulares-e-telefones/2026-10-15 12:02:11.381194-03:00/bronze_data.json: An error occurred (NoSuchBucket) when calling the PutObject operation: The specified bucket does not exist
-2026-10-15 12:03:18,405 - botocore.credentials - INFO - Found credentials in environment variables.
-2026-10-15 12:03:18,457 - __main__ - ERROR - Error occurred while uploading file: [Errno 2] No such file or directory: 'bronze_data.json'
-2026-10-15 12:03:44,331 - botocore.credentials - INFO - Found credentials in environment variables.
