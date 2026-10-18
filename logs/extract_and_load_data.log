@@ -13,3 +13,16 @@
 2026-10-15 12:03:18,457 - __main__ - ERROR - Error occurred while uploading file: [Errno 2] No such file or directory: 'bronze_data.json'
 2026-10-15 12:03:44,331 - botocore.credentials - INFO - Found credentials in environment variables.
 2026-10-15 14:39:17,364 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-18 10:23:05,138 - __main__ - INFO - Fetching page 1
+2026-10-18 10:23:12,446 - __main__ - INFO - Page 1 extracted from GeckoAPI
+2026-10-18 10:23:12,446 - __main__ - INFO - Fetching page 2
+2026-10-18 10:23:24,989 - __main__ - INFO - Page 2 extracted from GeckoAPI
+2026-10-18 10:23:24,990 - __main__ - INFO - Fetching page 3
+2026-10-18 10:23:36,868 - __main__ - INFO - Page 3 extracted from GeckoAPI
+2026-10-18 10:23:36,869 - __main__ - INFO - Fetching page 4
+2026-10-18 10:23:48,114 - __main__ - INFO - Page 4 extracted from GeckoAPI
+2026-10-18 10:23:48,115 - __main__ - INFO - Fetching page 5
+2026-10-18 10:24:00,660 - __main__ - INFO - Page 5 extracted from GeckoAPI
+2026-10-18 10:24:00,661 - __main__ - INFO - All pages have been obtained from GeckoAPI
+2026-10-18 10:24:00,669 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-18 10:24:01,721 - __main__ - INFO - bronze_data.json uploaded to Amazon S3

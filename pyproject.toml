@@ -10,6 +10,8 @@ requires-python = ">=3.12"
 dependencies = [
     "boto3>=1.43.114",
     "dotenv>=0.9.9",
+    "ipykernel>=7.4.0",
+    "ipynbname>=2025.8.0.0",
     "pandas>=3.0.6",
     "requests>=2.34.2",
 ]

@@ -36,27 +36,39 @@ def extract_data_model(page: int) -> pd.DataFrame:
                 "type": "plp",
                 "page": page
             },
-            timeout = 30
+            timeout=(10, 120)
         )
-        return response.json()
+        data = response.json()
+
+        if data.get('notFound') is True:
+            logger.error("notFound=true: entity not found")
+            raise ValueError("notFound=true: entity not found")
+
+        logger.info(f"Page {page} extracted from GeckoAPI")
+        return data
     except Exception as e:
-        logger.error(f"Error occurred while extracting data: {e}")
+        logger.error(f"Error occurred while trying to extract page {page} from GeckoAPI: {e}")
         raise
 
 def extract_data():
+    logger.info("Fetching page 1")
+
     data = extract_data_model(1)
     all_pages = [data]
 
     total_pages = math.ceil(data["data"]["totalResults"] / data["data"]["resultsPerPage"])
     for i in range(2, total_pages + 1):
+        logger.info(f"Fetching page {i}")
         data = extract_data_model(i)
         all_pages.append(data)
 
+    logger.info("All pages have been obtained from GeckoAPI")
     return all_pages
 
 def upload_data(data, key=None):
     if key is None:
-        key = f"bronze/mercadolivre/celulares-e-telefones/{datetime.now(ZoneInfo('America/Sao_Paulo'))}/bronze_data.json"
+        date_time = datetime.now(ZoneInfo('America/Sao_Paulo'))
+        key = f"bronze/mercadolivre/celulares-e-telefones/{date_time}/bronze_data.json"
 
     if not os.getenv('S3_BUCKET_NAME'):
         logger.error("S3_BUCKET_NAME is not set in the environment variables.")
@@ -77,8 +89,9 @@ def upload_data(data, key=None):
             Key=key,
             Body=json.dumps(data, ensure_ascii=False, indent=2).encode('utf-8')
         )
+        logger.info("bronze_data.json uploaded to Amazon S3")
     except Exception as e:
-        logger.error(f"Error occurred while uploading file: {e}")
+        logger.error(f"Error occurred while uploading file to Amazon S3: {e}")
         raise
 
 def main():
