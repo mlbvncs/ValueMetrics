@@ -9,16 +9,20 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "boto3>=1.43.114",
+    "dbt-core>=1.12.6",
+    "dbt-duckdb>=1.11.0",
     "dotenv>=0.9.9",
-    "ipykernel>=7.4.0",
+    "fsspec>=2026.9.0",
     "ipynbname>=2025.8.0.0",
+    "numpy>=2.5.4",
     "pandas>=3.0.6",
+    "pyarrow>=26.0.0",
     "requests>=2.34.2",
+    "s3fs>=0.4.2",
 ]
 
-[project.scripts]
-valuemetrics = "valuemetrics:main"
-
-[build-system]
-requires = ["uv_build>=0.12.23,<0.13.0"]
-build-backend = "uv_build"
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "ruff>=0.17.1",
+]

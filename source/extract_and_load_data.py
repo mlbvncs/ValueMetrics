@@ -10,6 +10,7 @@ import boto3
 import pandas as pd
 import requests
 from dotenv import load_dotenv
+from dotenv import set_key
 
 p = Path(__file__).parent.resolve().parent
 Path(p / 'logs').mkdir(parents=True, exist_ok=True)
@@ -19,7 +20,9 @@ filename_path = Path(p / 'logs' / 'extract_and_load_data.log')
 logging.basicConfig(format=format, filename=filename_path, encoding='utf-8', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-load_dotenv(dotenv_path=p / 'config' / '.env')
+env = '.env'
+env.touch()
+load_dotenv(dotenv_path=p / '.env')
 
 def extract_data_model(page: int) -> pd.DataFrame:
     if not os.getenv('API_KEY'):
@@ -65,10 +68,9 @@ def extract_data():
     logger.info("All pages have been obtained from GeckoAPI")
     return all_pages
 
-def upload_data(data, key=None):
+def upload_data(data, date_time_str, key=None):
     if key is None:
-        date_time = datetime.now(ZoneInfo('America/Sao_Paulo'))
-        key = f"bronze/mercadolivre/celulares-e-telefones/{date_time}/bronze_data.json"
+        key = f"bronze/mercadolivre/celulares-e-telefones/{date_time_str}/bronze_data.json"
 
     if not os.getenv('S3_BUCKET_NAME'):
         logger.error("S3_BUCKET_NAME is not set in the environment variables.")
@@ -94,8 +96,11 @@ def upload_data(data, key=None):
         logger.error(f"Error occurred while uploading file to Amazon S3: {e}")
         raise
 
+date_time_obj = datetime.now(ZoneInfo('America/Sao_Paulo'))
+date_time_str = date_time_obj.strftime('%Y-%m-%dT%H-%M-%S')
+set_key(dotenv_path=env, key_to_set="EXTRACT_DATETIME", value_to_set=date_time_str)
 def main():
-    upload_data(extract_data())
+    upload_data(extract_data(), date_time_str)
 
 if __name__ == '__main__':
     main()

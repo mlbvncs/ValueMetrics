@@ -4,3 +4,32 @@
 2026-10-18 17:59:00,828 - __main__ - INFO - bronze_data.json obtained from Amazon S3
 2026-10-18 18:02:03,773 - __main__ - INFO - bronze_data.json obtained from Amazon S3
 2026-10-18 18:12:10,965 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-19 14:31:12,498 - __main__ - ERROR - Error occurred while extracting data from Amazon S3: Could not connect to the endpoint URL: "https://mlbvncs-valuemetrics-dev.s3.amazonaws.com/bronze/mercadolivre/celulares-e-telefones/2026-10-18%2010%3A24%3A00.662699-03%3A00/bronze_data.json"
+2026-10-19 14:39:42,481 - __main__ - ERROR - Error occurred while extracting data from Amazon S3: Could not connect to the endpoint URL: "https://mlbvncs-valuemetrics-dev.s3.amazonaws.com/bronze/mercadolivre/celulares-e-telefones/2026-10-18%2010%3A24%3A00.662699-03%3A00/bronze_data.json"
+2026-10-19 14:42:14,265 - __main__ - ERROR - Error occurred while extracting data from Amazon S3: Could not connect to the endpoint URL: "https://mlbvncs-valuemetrics-dev.s3.amazonaws.com/bronze/mercadolivre/celulares-e-telefones/2026-10-18%2010%3A24%3A00.662699-03%3A00/bronze_data.json"
+2026-10-20 09:11:15,542 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 09:30:27,597 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 09:30:27,699 - __main__ - ERROR - Error occurred while uploading file to Amazon S3: Unable to find a usable engine; tried using: 'pyarrow', 'fastparquet'.
+A suitable version of pyarrow or fastparquet is required for parquet support.
+Trying to import the above resulted in these errors:
+ - `Import pyarrow` failed. pyarrow is required for parquet support. Use pip or conda to install the pyarrow package.
+ - `Import fastparquet` failed. fastparquet is required for parquet support. Use pip or conda to install the fastparquet package.
+2026-10-20 09:33:19,609 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 09:33:19,949 - __main__ - ERROR - Error occurred while uploading file to Amazon S3: `Import fsspec` failed.  Use pip or conda to install the fsspec package.
+2026-10-20 09:34:15,525 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 09:34:15,837 - __main__ - ERROR - Error occurred while uploading file to Amazon S3: Install s3fs to access S3
+2026-10-20 09:35:56,290 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 09:35:57,175 - __main__ - ERROR - Error occurred while uploading file to Amazon S3: An error occurred (AccessDenied) when calling the PutObject operation: Access Denied
+2026-10-20 11:01:35,376 - __main__ - ERROR - Error occurred while extracting data from Amazon S3: An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:iam::827257882304:user/valuemetrics-app is not authorized to perform: s3:ListBucket on resource: "arn:aws:s3:::mlbvncs-valuemetrics-dev" because no identity-based policy allows the s3:ListBucket action
+2026-10-20 11:39:23,166 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 11:39:23,467 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-20 11:39:24,054 - __main__ - INFO - silver_data.parquet uploaded to Amazon S3
+2026-10-20 11:41:58,776 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 11:41:58,898 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-20 11:41:59,437 - __main__ - INFO - silver_data.parquet uploaded to Amazon S3
+2026-10-20 16:33:51,120 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-20 16:33:51,256 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-20 16:33:52,150 - __main__ - INFO - silver_data.parquet uploaded to Amazon S3
+2026-10-22 15:01:12,643 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-22 15:01:12,749 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-22 15:02:48,752 - __main__ - ERROR - Error occurred while uploading file to Amazon S3: Could not connect to the endpoint URL: "https://mlbvncs-valuemetrics-dev.s3.amazonaws.com/silver/mercadolivre/celulares-e-telefones/2026-10-22T15-01-12/silver_data.parquet"

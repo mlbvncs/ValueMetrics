@@ -1,0 +1,132 @@
+[0m12:59:02.100889 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c9bec050d10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c9bedd1a3f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c9beafe14c0>]}
+
+
+============================== 12:59:02.144969 | 30ab9127-4d4b-44e9-bee7-137ab9dbefc3 ==============================
+[0m12:59:02.144969 [info ] [MainThread]: Running with dbt=1.12.6
+[0m12:59:02.145798 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'cache_selected_only': 'False', 'maximum_seed_size_mib': '1', 'no_print': 'None', 'introspect': 'True', 'hints_enabled': 'True', 'log_path': 'logs', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'empty': 'None', 'target_path': 'None', 'static_parser': 'True', 'log_format': 'default', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'indirect_selection': 'eager', 'profiles_dir': '/home/mlbvncs/.dbt', 'use_experimental_parser': 'False', 'invocation_command': 'dbt init ValueMetrics', 'debug': 'False', 'partial_parse': 'True', 'warn_error': 'None', 'write_json': 'True', 'log_cache_events': 'False'}
+[0m12:59:02.210044 [info ] [MainThread]: Creating dbt configuration folder at /home/mlbvncs/.dbt
+[0m12:59:02.214100 [debug] [MainThread]: Starter project path: /home/mlbvncs/ValueMetrics/.venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m12:59:02.229288 [info ] [MainThread]: Setting up your profile.
+[0m13:00:32.487259 [info ] [MainThread]: Profile ValueMetrics written to /home/mlbvncs/.dbt/profiles.yml using target's sample configuration. Once updated, you'll be able to start developing with dbt.
+[0m13:00:32.536855 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m13:00:32.538180 [info ] [MainThread]: dbt version: 1.12.6
+[0m13:00:32.538610 [info ] [MainThread]: python version: 3.12.14
+[0m13:00:32.539000 [info ] [MainThread]: python path: /home/mlbvncs/ValueMetrics/.venv/bin/python
+[0m13:00:32.539510 [info ] [MainThread]: os info: Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43
+[0m13:00:32.727527 [info ] [MainThread]: Using profiles dir at /home/mlbvncs/.dbt
+[0m13:00:32.728569 [info ] [MainThread]: Using profiles.yml file at /home/mlbvncs/.dbt/profiles.yml
+[0m13:00:32.729129 [info ] [MainThread]: Using dbt_project.yml file at /home/mlbvncs/ValueMetrics/ValueMetrics/dbt_project.yml
+[0m13:00:32.733555 [info ] [MainThread]: adapter type: duckdb
+[0m13:00:32.734411 [info ] [MainThread]: adapter version: 1.11.0
+[0m13:00:32.898866 [info ] [MainThread]: Configuration:
+[0m13:00:32.899819 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m13:00:32.900775 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m13:00:32.901414 [info ] [MainThread]: Required dependencies:
+[0m13:00:32.902807 [debug] [MainThread]: Executing "git --help"
+[0m13:00:32.969211 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:00:32.971129 [debug] [MainThread]: STDERR: "b''"
+[0m13:00:32.972136 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:00:32.973137 [info ] [MainThread]: Connection:
+[0m13:00:32.974016 [info ] [MainThread]:   database: dev
+[0m13:00:32.974883 [info ] [MainThread]:   schema: main
+[0m13:00:32.975735 [info ] [MainThread]:   path: dev.duckdb
+[0m13:00:32.976597 [info ] [MainThread]:   config_options: None
+[0m13:00:32.977409 [info ] [MainThread]:   extensions: None
+[0m13:00:32.978223 [info ] [MainThread]:   settings: {}
+[0m13:00:32.978925 [info ] [MainThread]:   external_root: .
+[0m13:00:32.979322 [info ] [MainThread]:   use_credential_provider: None
+[0m13:00:32.979649 [info ] [MainThread]:   attach: None
+[0m13:00:32.980003 [info ] [MainThread]:   filesystems: None
+[0m13:00:32.980424 [info ] [MainThread]:   remote: None
+[0m13:00:32.980774 [info ] [MainThread]:   plugins: None
+[0m13:00:32.981116 [info ] [MainThread]:   disable_transactions: False
+[0m13:00:32.982277 [info ] [MainThread]: Registered adapter: duckdb=1.11.0
+[0m13:00:33.255637 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m13:00:33.741300 [debug] [MainThread]: Using duckdb connection "debug"
+[0m13:00:33.742335 [debug] [MainThread]: On debug: select 1 as id
+[0m13:00:33.743384 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:00:34.001062 [debug] [MainThread]: SQL status: OK in 0.257 seconds
+[0m13:00:34.003162 [debug] [MainThread]: On debug: Close
+[0m13:00:34.004264 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m13:00:34.004822 [info ] [MainThread]: [32mAll checks passed![0m
+[0m13:00:34.005633 [info ] [MainThread]: Your new dbt project "ValueMetrics" was created!
+Initialized new project in /home/mlbvncs/ValueMetrics/ValueMetrics/ValueMetrics
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m13:00:34.007757 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 92.00146, "process_in_blocks": "0", "process_kernel_time": 2.312855, "process_mem_max_rss": "175324", "process_out_blocks": "0", "process_user_time": 4.969388}
+[0m13:00:34.009418 [debug] [MainThread]: Command `dbt init` succeeded at 13:00:34.009045 after 92.00 seconds
+[0m13:00:34.010384 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m13:00:34.011421 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c9bec50c620>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c9bedadbf20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c9beef0f590>]}
+[0m13:00:34.013152 [debug] [MainThread]: Flushing usage events
+[0m13:00:35.115499 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m13:23:32.382141 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78f7ccd57710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78f7ceaa4650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78f7ccd57320>]}
+
+
+============================== 13:23:32.393811 | 9826238e-1f39-4d5c-9f4f-4ef2f15cfb37 ==============================
+[0m13:23:32.393811 [info ] [MainThread]: Running with dbt=1.12.6
+[0m13:23:32.394441 [debug] [MainThread]: running dbt with arguments {'hints_enabled': 'True', 'write_json': 'True', 'log_path': 'logs', 'version_check': 'True', 'target_path': 'None', 'fail_fast': 'False', 'warn_error': 'None', 'profiles_dir': '/home/mlbvncs/.dbt', 'log_cache_events': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'debug': 'False', 'quiet': 'False', 'use_colors': 'True', 'log_format': 'default', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'maximum_seed_size_mib': '1', 'no_print': 'None', 'invocation_command': 'dbt debug', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'printer_width': '80', 'partial_parse': 'True'}
+[0m13:23:32.430237 [info ] [MainThread]: dbt version: 1.12.6
+[0m13:23:32.430821 [info ] [MainThread]: python version: 3.12.14
+[0m13:23:32.431312 [info ] [MainThread]: python path: /home/mlbvncs/ValueMetrics/.venv/bin/python
+[0m13:23:32.431845 [info ] [MainThread]: os info: Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43
+[0m13:23:32.749495 [info ] [MainThread]: Using profiles dir at /home/mlbvncs/.dbt
+[0m13:23:32.750225 [info ] [MainThread]: Using profiles.yml file at /home/mlbvncs/.dbt/profiles.yml
+[0m13:23:32.750680 [info ] [MainThread]: Using dbt_project.yml file at /home/mlbvncs/ValueMetrics/dbt_project.yml
+[0m13:23:32.754297 [info ] [MainThread]: adapter type: duckdb
+[0m13:23:32.754747 [info ] [MainThread]: adapter version: 1.11.0
+[0m13:23:32.755234 [info ] [MainThread]: Configuration:
+[0m13:23:32.755613 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m13:23:32.756050 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m13:23:32.756657 [info ] [MainThread]: Required dependencies:
+[0m13:23:32.757300 [debug] [MainThread]: Executing "git --help"
+[0m13:23:32.780768 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m13:23:32.781631 [debug] [MainThread]: STDERR: "b''"
+[0m13:23:32.782167 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m13:23:32.783252 [info ] [MainThread]: Connection:
+[0m13:23:32.784703 [info ] [MainThread]:   database: dev
+[0m13:23:32.785442 [info ] [MainThread]:   schema: main
+[0m13:23:32.786003 [info ] [MainThread]:   path: dev.duckdb
+[0m13:23:32.786597 [info ] [MainThread]:   config_options: None
+[0m13:23:32.787269 [info ] [MainThread]:   extensions: None
+[0m13:23:32.788029 [info ] [MainThread]:   settings: {}
+[0m13:23:32.788879 [info ] [MainThread]:   external_root: .
+[0m13:23:32.789646 [info ] [MainThread]:   use_credential_provider: None
+[0m13:23:32.790562 [info ] [MainThread]:   attach: None
+[0m13:23:32.791356 [info ] [MainThread]:   filesystems: None
+[0m13:23:32.791938 [info ] [MainThread]:   remote: None
+[0m13:23:32.792601 [info ] [MainThread]:   plugins: None
+[0m13:23:32.793209 [info ] [MainThread]:   disable_transactions: False
+[0m13:23:32.794099 [info ] [MainThread]: Registered adapter: duckdb=1.11.0
+[0m13:23:32.940462 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m13:23:33.075641 [debug] [MainThread]: Using duckdb connection "debug"
+[0m13:23:33.076219 [debug] [MainThread]: On debug: select 1 as id
+[0m13:23:33.076921 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m13:23:34.295369 [debug] [MainThread]: SQL status: OK in 1.218 seconds
+[0m13:23:34.297509 [debug] [MainThread]: On debug: Close
+[0m13:23:34.300242 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m13:23:34.301066 [info ] [MainThread]: [31m1 check failed:[0m
+[0m13:23:34.301851 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </home/mlbvncs/ValueMetrics/dbt_project.yml> not found
+
+[0m13:23:34.303025 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 2.0932665, "process_in_blocks": "0", "process_kernel_time": 7.481211, "process_mem_max_rss": "166500", "process_out_blocks": "0", "process_user_time": 4.426206}
+[0m13:23:34.303792 [debug] [MainThread]: Command `dbt debug` failed at 13:23:34.303614 after 2.09 seconds
+[0m13:23:34.304501 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m13:23:34.304968 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78f7cb9d4710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78f7cfbb3560>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78f7cc8c6660>]}
+[0m13:23:34.305616 [debug] [MainThread]: Flushing usage events
+[0m13:23:35.006562 [debug] [MainThread]: An error was encountered while trying to flush usage events
