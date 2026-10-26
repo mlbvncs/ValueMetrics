@@ -87,6 +87,7 @@ def create_dataframe() -> pd.DataFrame:
 
     return df
 
+#1
 def normalize_df(df: pd.DataFrame) -> pd.DataFrame:
     df_data_items = df.explode('data.items', ignore_index=True)
     df_items = pd.json_normalize(df_data_items['data.items'])
@@ -94,50 +95,76 @@ def normalize_df(df: pd.DataFrame) -> pd.DataFrame:
         [df_data_items, df_items],
         axis=1
     )
-
-    return df
-
-def drop_unnecessary(df: pd.DataFrame, drop_columns: list) -> pd.DataFrame:
-    df_drop = df.drop(drop_columns, axis=1)
-    return df_drop
-
-def standard_dataextractedat(df: pd.DataFrame) -> pd.DataFrame:
-    df['data.extractedAt'] = pd.to_datetime(df['data.extractedAt'])
-    df['data.extractedAt'] = df['data.extractedAt'].dt.tz_convert('America/Sao_Paulo')
-
-    return df
-
-def treat_identification_columns(df: pd.DataFrame) -> pd.DataFrame:
-    #nulls and empty strings
-    df = df.replace(r'^\s*$', np.nan, regex=True)
-    df = df.dropna(subset=['url', 'sku'], ignore_index=True)
-    #unique
-    df.drop_duplicates(subset=['url', 'sku'], inplace=True, ignore_index=True)
-
-    other_columns = [col for col in df.columns if col not in ['url', 'sku']]
-    df = df.reindex(columns=['url', 'sku'] + other_columns)
     
     return df
 
-def impute_values(df: pd.DataFrame) -> pd.DataFrame:
-    df.loc[df['highlight'].isna(), 'highlight'] = 'Sem destaque'
-
+#2
+def drop_unnecessary(df: pd.DataFrame, drop_columns: list) -> pd.DataFrame:
+    df = df.drop(drop_columns, axis=1)
+    
     return df
 
-def treat_outliers(df: pd.DataFrame) -> pd.DataFrame:
-    #price
-    df = df.dropna(subset='price', ignore_index=True)
-
-    #aggregateRating.rating
-    df.loc[(df['aggregateRating.rating'] < 1) | (df['aggregateRating.rating'] > 5), 'aggregateRating.rating'] = np.nan
-
-    return df
-
+#3
 def rename_columns(df: pd.DataFrame, columns_to_rename: dict) -> pd.DataFrame:
     for key, value in columns_to_rename.items():
         df.rename(columns={key: value}, inplace=True)
 
     return df
+
+#4
+def convert_type(df: pd.DataFrame) -> pd.DataFrame:
+    df['extracted_at'] = pd.to_datetime(df['extracted_at'], errors='coerce').dt.tz_convert('America/Sao_Paulo')
+    df = df.astype(
+            {
+                "url": "string", 
+                "image_url": "string", 
+                "sku": "string",
+                "category_id": "string",
+                "domain_id": "string",
+                "name": "string",
+                "condition": "string",
+                "currency": "string",
+                "currency_raw": "string",
+                "price": "Float64",
+                "highlight": "string",
+                "is_best_seller": "boolean",
+                "is_power_seller": "boolean",
+                "power_seller_status_title": "string",
+                "rating": "Float64",
+                "review_count": "Float64",
+                "ean": "string",
+                "seller_id": "string",
+                "seller_name": "string",
+                "seller_city": "string",
+                "seller_state": "string",
+                "seller_country": "string"
+            }
+        )
+
+    return df
+
+#5
+def treat_outliers(df: pd.DataFrame) -> pd.DataFrame:
+    #price
+    df = df.dropna(subset='price', ignore_index=True)
+    #rating
+    df.loc[(df['rating'] < 1) | (df['rating'] > 5), 'rating'] = 0
+
+    return df
+
+#6
+
+#7
+def treat_identification_columns(df: pd.DataFrame) -> pd.DataFrame:
+    #unique
+    df.drop_duplicates(subset=['url', 'sku'], inplace=True, ignore_index=True)
+    other_columns = [col for col in df.columns if col not in ['url', 'sku']]
+    df = df.reindex(columns=['url', 'sku'] + other_columns)
+    
+    return df
+
+
+
 
 def upload_data(df, upload_date_time_str, key=None):
     if not os.getenv('EXTRACT_DATETIME'):
@@ -180,13 +207,7 @@ env = '.env'
 set_key(dotenv_path=env, key_to_set="TRANSFORM_DATETIME", value_to_set=upload_date_time_str)
 def main():
     df = create_dataframe()
-    df = normalize_df(df)
-    df = drop_unnecessary(df, drop_columns)
-    df = standard_dataextractedat(df)
-    df = treat_identification_columns(df)
-    df = impute_values(df)
-    df = treat_outliers(df)
-    df = rename_columns(df, columns_to_rename)
+    #
     upload_data(df, upload_date_time_str)
 
 if __name__ == '__main__':
