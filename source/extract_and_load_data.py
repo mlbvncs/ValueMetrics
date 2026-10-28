@@ -9,8 +9,7 @@ from zoneinfo import ZoneInfo
 import boto3
 import pandas as pd
 import requests
-from dotenv import load_dotenv
-from dotenv import set_key
+from dotenv import load_dotenv, set_key
 
 p = Path(__file__).parent.resolve().parent
 Path(p / 'logs').mkdir(parents=True, exist_ok=True)
@@ -20,9 +19,9 @@ filename_path = Path(p / 'logs' / 'extract_and_load_data.log')
 logging.basicConfig(format=format, filename=filename_path, encoding='utf-8', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-env = '.env'
+env = p / '.env'
 env.touch()
-load_dotenv(dotenv_path=p / '.env')
+load_dotenv(dotenv_path=env)
 
 def extract_data_model(page: int) -> pd.DataFrame:
     if not os.getenv('API_KEY'):
@@ -41,6 +40,8 @@ def extract_data_model(page: int) -> pd.DataFrame:
             },
             timeout=(10, 120)
         )
+        response.raise_for_status()
+
         data = response.json()
 
         if data.get('notFound') is True:

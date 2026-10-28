@@ -7,10 +7,8 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import boto3
-import numpy as np
 import pandas as pd
-from dotenv import load_dotenv
-from dotenv import set_key
+from dotenv import load_dotenv, set_key
 
 p = Path(__file__).parent.resolve().parent
 Path(p / 'logs').mkdir(parents=True, exist_ok=True)
@@ -20,7 +18,8 @@ filename_path = Path(p / 'logs' / 'transform_data.log')
 logging.basicConfig(format=format, filename=filename_path, encoding='utf-8', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-load_dotenv(dotenv_path=p / '.env')
+env = p / '.env'
+load_dotenv(dotenv_path=env)
 
 drop_columns = [
     'requestId', 'executionId', 'data.source', 'data.type', 'data.url', 
@@ -58,11 +57,6 @@ def extract_data():
     if not os.getenv('EXTRACT_DATETIME'):
         logger.error("EXTRACT_DATETIME is not set in the environment variables.")
         raise TypeError("Expected string for EXTRACT_DATETIME, received None (EXTRACT_DATETIME is not set in the environment variables).")
-    
-
-    if not os.getenv('S3_BUCKET_NAME'):
-        logger.error("S3_BUCKET_NAME is not set in the environment variables.")
-        raise TypeError("Expected string for S3_BUCKET_NAME, received None (S3_BUCKET_NAME is not set in the environment variables).")
 
     try:
         s3_client = boto3.client(
@@ -163,28 +157,9 @@ def treat_identification_columns(df: pd.DataFrame) -> pd.DataFrame:
     
     return df
 
-
-
-
 def upload_data(df, upload_date_time_str, key=None):
-    if not os.getenv('EXTRACT_DATETIME'):
-        logger.error("EXTRACT_DATETIME is not set in the environment variables.")
-        raise TypeError("Expected string for EXTRACT_DATETIME, received None (EXTRACT_DATETIME is not set in the environment variables).")
-
-    if not os.getenv('S3_BUCKET_NAME'):
-        logger.error("S3_BUCKET_NAME is not set in the environment variables.")
-        raise TypeError("Expected string for S3_BUCKET_NAME, received None (S3_BUCKET_NAME is not set in the environment variables).")
-    
     if key is None:
         key = f"silver/mercadolivre/celulares-e-telefones/{upload_date_time_str}/silver_data.parquet"
-
-    if not os.getenv('AWS_ACCESS_KEY_ID'):
-        logger.error("AWS_ACCESS_KEY_ID is not set in the environment variables.")
-        raise TypeError("Expected string for AWS_ACCESS_KEY_ID, received None (AWS_ACCESS_KEY_ID is not set in the environment variables).")
-
-    if not os.getenv('AWS_SECRET_ACCESS_KEY'):
-        logger.error("AWS_SECRET_ACCESS_KEY is not set in the environment variables.")
-        raise TypeError("Expected string for AWS_SECRET_ACCESS_KEY, received None (AWS_SECRET_ACCESS_KEY is not set in the environment variables).")
 
     try:
         parquet_buffer = io.BytesIO()
@@ -203,11 +178,16 @@ def upload_data(df, upload_date_time_str, key=None):
 
 upload_date_time_obj = datetime.now(ZoneInfo('America/Sao_Paulo'))
 upload_date_time_str = upload_date_time_obj.strftime('%Y-%m-%dT%H-%M-%S')
-env = '.env'
 set_key(dotenv_path=env, key_to_set="TRANSFORM_DATETIME", value_to_set=upload_date_time_str)
 def main():
     df = create_dataframe()
-    #
+    df = normalize_df(df)
+    df = drop_unnecessary(df, drop_columns)
+    df = rename_columns(df, columns_to_rename)
+    df = convert_type(df)
+    df = treat_outliers(df)
+
+    df = treat_identification_columns(df)
     upload_data(df, upload_date_time_str)
 
 if __name__ == '__main__':

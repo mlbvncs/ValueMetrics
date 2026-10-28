@@ -95,3 +95,14 @@
 2026-10-20 11:37:06,333 - __main__ - INFO - All pages have been obtained from GeckoAPI
 2026-10-20 11:37:06,344 - botocore.credentials - INFO - Found credentials in environment variables.
 2026-10-20 11:37:07,467 - __main__ - INFO - bronze_data.json uploaded to Amazon S3
+2026-10-28 18:01:41,265 - __main__ - INFO - Fetching page 1
+2026-10-28 18:01:47,600 - __main__ - INFO - Page 1 extracted from GeckoAPI
+2026-10-28 18:01:47,601 - __main__ - INFO - Fetching page 2
+2026-10-28 18:02:37,600 - __main__ - INFO - Page 2 extracted from GeckoAPI
+2026-10-28 18:02:37,601 - __main__ - INFO - Fetching page 3
+2026-10-28 18:02:50,085 - __main__ - INFO - Page 3 extracted from GeckoAPI
+2026-10-28 18:02:50,085 - __main__ - INFO - Fetching page 4
+2026-10-28 18:03:00,945 - __main__ - INFO - Page 4 extracted from GeckoAPI
+2026-10-28 18:03:00,945 - __main__ - INFO - All pages have been obtained from GeckoAPI
+2026-10-28 18:03:00,953 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-28 18:03:02,061 - __main__ - INFO - bronze_data.json uploaded to Amazon S3
