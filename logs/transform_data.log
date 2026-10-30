@@ -41,3 +41,14 @@ Trying to import the above resulted in these errors:
 2026-10-28 18:05:24,127 - botocore.credentials - INFO - Found credentials in environment variables.
 2026-10-28 18:05:24,705 - __main__ - INFO - silver_data.parquet uploaded to Amazon S3
 2026-10-28 18:08:35,456 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-29 11:08:10,766 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-29 11:15:14,392 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-29 15:49:28,513 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-29 15:49:28,575 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-29 15:49:29,129 - __main__ - INFO - silver_data.parquet uploaded to Amazon S3
+2026-10-30 10:37:46,828 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-30 15:20:40,812 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-30 15:20:40,864 - botocore.credentials - INFO - Found credentials in environment variables.
+2026-10-30 15:20:41,402 - __main__ - INFO - silver_data.parquet uploaded to Amazon S3
+2026-10-30 15:38:06,091 - __main__ - INFO - bronze_data.json obtained from Amazon S3
+2026-10-30 15:39:15,008 - __main__ - INFO - bronze_data.json obtained from Amazon S3

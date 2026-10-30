@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: silver_S3
+    meta:
+      external_location: "s3://mlbvncs-valuemetrics-dev/silver/mercadolivre/celulares-e-telefones/{{ env_var('TRANSFORM_DATETIME') }}/silver_data.parquet"
+    tables:
+      - name: silver_data

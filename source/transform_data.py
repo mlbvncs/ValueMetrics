@@ -107,12 +107,12 @@ def rename_columns(df: pd.DataFrame, columns_to_rename: dict) -> pd.DataFrame:
 
 #4
 def convert_type(df: pd.DataFrame) -> pd.DataFrame:
-    df['extracted_at'] = pd.to_datetime(df['extracted_at'], errors='coerce').dt.tz_convert('America/Sao_Paulo')
     df = df.astype(
             {
-                "url": "string", 
-                "image_url": "string", 
+                "url": "string",  
                 "sku": "string",
+                "extracted_at": "string",
+                "image_url": "string",
                 "category_id": "string",
                 "domain_id": "string",
                 "name": "string",
@@ -124,14 +124,14 @@ def convert_type(df: pd.DataFrame) -> pd.DataFrame:
                 "is_best_seller": "boolean",
                 "is_power_seller": "boolean",
                 "power_seller_status_title": "string",
-                "rating": "Float64",
-                "review_count": "Float64",
                 "ean": "string",
                 "seller_id": "string",
                 "seller_name": "string",
                 "seller_city": "string",
                 "seller_state": "string",
-                "seller_country": "string"
+                "seller_country": "string",
+                "rating": "Float64",
+                "review_count": "Float64",
             }
         )
 
@@ -151,9 +151,9 @@ def treat_outliers(df: pd.DataFrame) -> pd.DataFrame:
 #7
 def treat_identification_columns(df: pd.DataFrame) -> pd.DataFrame:
     #unique
-    df.drop_duplicates(subset=['url', 'sku'], inplace=True, ignore_index=True)
-    other_columns = [col for col in df.columns if col not in ['url', 'sku']]
-    df = df.reindex(columns=['url', 'sku'] + other_columns)
+    df.drop_duplicates(subset=['url'], inplace=True, ignore_index=True)
+    other_columns = [col for col in df.columns if col != 'url']
+    df = df.reindex(columns=['url'] + other_columns)
     
     return df
 
