@@ -11,7 +11,7 @@ wheels/
 .env
 .ruff_cache
 .vscode
-.logs
+logs
 
 # DuckDB
 *.duckdb
